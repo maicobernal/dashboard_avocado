@@ -1,0 +1,19 @@
+cookie:
+  expiry_days: 30
+  key: some_signature_key
+  name: some_cookie_name
+credentials:
+  usernames:
+    maico:
+      email: bernalmaico@gmail.com
+      name: maico
+      password: $2b$12$QD937/Db/29W2mZvhZqLWe58XWRKBlvAFosYI69Yi3zaklTc2SEWO
+      premium: true
+    boris:
+      email: boris6000@gmail.com
+      name: boris
+      password: $2b$12$i.GZhIzC3nPVpoFdIyCmRedmL9LkyHR7MDaiDJw8sRH/QAv66jcVS
+      premium: false
+preauthorized:
+  emails:
+  - montotodiaz@gmail.com
