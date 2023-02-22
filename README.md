@@ -20,6 +20,7 @@ We calculated a success score for business based on numbers of reviews, checkin 
 
 #### Home
 Here the users gets the features of the business with the highest sucess score (which business has more positive interactions with users). 
+
 <img src="https://github.com/maicobernal/dashboard/blob/main/image/home.png"  height="300">
 
 #### My Business
@@ -41,19 +42,21 @@ Time series analysis and forecasting was made and saved in CSV (model selection 
 #### Opportunities 
 This section is intended for users who wants to get predictions for business oportunities for investment.
 User can select business features and check if the business will be popular. Predictions are made with a trained XGBoost model.
+
 <img src="https://github.com/maicobernal/dashboard/blob/main/image/oportunities.png"  height="300">
 <img src="https://github.com/maicobernal/dashboard/blob/main/image/oportunities2.png"  height="300">
 
 
 #### Add business
 In this section the user can select another business preloaded in the database. Once selected, it will appear in "My Business" tab and can check reviews and metrics. 
+
 <img src="https://github.com/maicobernal/dashboard/blob/main/image/add.png"  height="300">
 <img src="https://github.com/maicobernal/dashboard/blob/main/image/add2.png"  height="300">
 
 - - -
 ## **Data modeling**
 
-![](/image/modeling.png)
+<img src="https://github.com/maicobernal/dashboard/blob/main/image/modeling.png"  height="600">
 
 - - -
 
