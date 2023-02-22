@@ -216,7 +216,7 @@ def metricas():
     metrics[2].metric('Positive sentiment', f'{round(positive_sentiment, 2)*100}%', delta=None, delta_color="normal")
     metrics[3].metric('Influencer Score', f'{round(inf_score, 2)*100}%', delta=None, delta_color="normal")
     metrics[4].metric('Top Hour', '18:00', delta=None, delta_color="normal")
-    metrics[5].metric('Number_visits', number_visits)
+    metrics[5].metric('Visitors', number_visits)
 
 
 
@@ -751,101 +751,3 @@ def addbusiness():
 
     else:
         st.text('Business not found, check the name and try again')
-
-
-
-####### NO BORRAR #######
-
-#### TODO: MAPA EN 3D ####
-
-# def dataframe():
-#     df = pd.read_sql("""SELECT bc.name,bc.address,bc.longitude_x,bc.latitude_x,bt.success_score FROM business  bc join business_target bt on bc.business_id=bt.business_id limit 1000""", engine)
-#     return df
-#     #'address','latitude_x','longitude_x','success_score'
-
-# data1 = dataframe()
-
-# def mapa3dGrafico():
-#     #dicc = {'latitude_x':[37.742699],'longitude_x':[-122.392366],'name':['pepito'],'address':['EE.UU']}
-#     #df =pd.DataFrame(dicc)
-#     #df = pd.DataFrame(np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],columns=['latitude_x','longitude_x'])
-#     data2 = data1.sort_values(by='success_score',ascending=False)
-#     ht.mapa3d(data2)
-
-#### PERMITE HACER TIME SERIES ANALYSIS IN REAL TIME ####
-
-# def eval_model(model, train, val):
-#     model.fit(train)
-#     forecast = model.predict(len(val))
-    
-#     string = "model {} obtains MAPE: {:.2f}%".format(model, mape(val, forecast))
-
-#     fig1 = px.line(train.pd_dataframe())
-#     fig1.update_layout(title='Actual')
-#     fig1.update_traces(line_color='purple', name='Actual', x='Years', y='Total Reviews')
-
-
-#     fig2 = px.line(forecast.pd_dataframe())
-#     fig2.update_layout(title='Forecast')
-#     fig2.update_traces(line_color='seagreen', name='Forecast')
-
-#     fig = go.Figure(data = fig1.data + fig2.data)
-#     return fig, string
-
-
-# def timeseries():
-#     df = pd.read_csv('pages/main/data/forecasting.csv', parse_dates=['month'], index_col='month')
-#     df = df['2010':]
-
-#     # st.title('Time Series Visualization')
-#     st.markdown('Reviews/Tips/Checkins by Month for the Top Brands in USA'
-#     )
-
-#     # Create a list of unique brands
-#     st.text("Select you favourite brand")
-#     top_brand_selected = st.multiselect('Select brand', df.columns.tolist(), df.columns.tolist()[0:3])
-
-#     st.plotly_chart(df[top_brand_selected].plot(title = 'Total Review/Tips/Checkins Counts on Yelp for Top Brands'))
-
-
-#     series = TimeSeries.from_dataframe(df, fill_missing_dates=True, freq='MS', fillna_value=0)
-
-#     st.title('Forecasting Time Series')
-#     st.markdown('Reviews/Tips/Checkins by Month for the Top Brands in USA'
-#     )
-
-#     # Create a list of unique brands
-#     st.text("Select you favourite brand")
-#     top_brand_selected_f = st.selectbox('Select brand for forecast', df.columns.tolist())
-
-#     train, val = series[top_brand_selected_f].split_after(pd.Timestamp('2021-01-01'))
-    
-#     for m in range(2, 25):
-#         is_seasonal, mseas = check_seasonality(train, m=m, alpha=0.05)
-#         if is_seasonal:
-#             break
-    
-    # model = ExponentialSmoothing()
-
-    # fig, string = eval_model(model, train, val)
-
-    # fig.update_layout(title=top_brand_selected_f)
-    # st.plotly_chart(fig)
-
-    # st.text(string)
-
-
-## Old function to connect to local Postgres DB
-# def connect_to_postgres(local_ip = 'localhost:5432', database = 'yelp'):
-#     with open('credentials_postgres.json', 'r') as file:
-#         data = json.load(file)
-#         username = data['username']
-#         password = data['password']
-
-#     engine = create_engine("postgresql://{user}:{pw}@{address}/{db}"
-#                         .format(user = username,
-#                                 address = local_ip,
-#                                 pw = password,
-#                                 db = database))
-
-#     return engine
