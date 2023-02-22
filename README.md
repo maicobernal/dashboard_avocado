@@ -1,7 +1,10 @@
-# **Dashboard**
-
+## **Streamlit Dashboard**
 - - -
+### TLDR
+Access the dashboard [HERE](https://maicobernal-dashboard-main-fxr72z.streamlit.app/)
 
+
+## Readme
 This is a repository intended to get a fully functional dashboard from the final project at Henry, which can be explored [here](https://github.com/HenryLABFinalGrupo02/trabajofinal).
 
 It only contains 10% of the data and it's uploaded to Supabase.com, a free PostgreSQL hosting. 
