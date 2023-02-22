@@ -11,7 +11,7 @@ import yaml
 if 'key' not in st.session_state:
    st.session_state['key'] = None
 if 'name' not in st.session_state:
-   st.session_state['name'] = None
+   st.session_state['name'] = 'maico'
 if 'expiry_days' not in st.session_state:
    st.session_state['expiry_days'] = None
 if 'authentication_status' not in st.session_state:
