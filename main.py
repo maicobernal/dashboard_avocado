@@ -7,6 +7,7 @@ from pages.main import tabs_functions as tf
 from PIL import Image
 import streamlit_authenticator as stauth
 import yaml
+import os
 
 if 'key' not in st.session_state:
    st.session_state['key'] = None
@@ -19,10 +20,9 @@ if 'authentication_status' not in st.session_state:
 if 'username' not in st.session_state:
    st.session_state['username'] = None
 
-
-print(st.session_state)
-
-with open(r'./config.yaml') as file: #Open the config.yaml file and then use it in user authentication
+path = os.getcwd()
+fileyaml = os.path.join(path, 'config.yaml')
+with open(fileyaml) as file: #Open the config.yaml file and then use it in user authentication
    users = yaml.load(file, Loader=yaml.SafeLoader)
 
 
