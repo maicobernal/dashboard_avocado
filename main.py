@@ -5,11 +5,11 @@ from streamlit_option_menu import option_menu
 from multiprocessing import Value
 from pages.main import tabs_functions as tf
 from PIL import Image
-import authenticator_edit as stauth
+import streamlit_authenticator as stauth
 import yaml
 
-with open(r'config.yaml') as file: #Open the config.yaml file and then use it in user authentication
-   users = yaml.load(file, Loader=yaml.FullLoader)
+with open(r'./config.yaml') as file: #Open the config.yaml file and then use it in user authentication
+   users = yaml.load(file, Loader=yaml.SafeLoader)
 
 
 st.set_page_config(
@@ -44,7 +44,7 @@ def register(): #Create a function for user registration and save the config.yam
       yaml.dump(users, file, default_flow_style=False)
 
 
-name, authentication_status, username,premium = authenticator.login('Login', 'main') #We use the login method so that the user can log in
+name, authentication_status, username = authenticator.login('Login', 'main') #We use the login method so that the user can log in
 if authentication_status == False: # If the user places incorrect data or if it does not exist we will notify him so that he can register or enter the data well
    st.error('Username/password is incorrect')
    st.button('Register', on_click=register)
@@ -62,7 +62,7 @@ if authentication_status:# If the user entered their data well you can see all t
    with st.sidebar:
       st.image(Image.open('./image/logo_vocado.png'))
    
-      selected2 = option_menu(None, ["Home", "My Business", "Competition", "Opportunities", "Add business",'Log out'], 
+      selected = option_menu(None, ["Home", "My Business", "Competition", "Opportunities", "Add business",'Log out'], 
       icons=['house', 'building', 'globe', 'star', 'plus','lightbulb-off-fill'], 
       menu_icon="cast", default_index=0, orientation="vertical",
       styles={
@@ -81,72 +81,38 @@ if authentication_status:# If the user entered their data well you can see all t
                                  "color":"#FFFFFF"},
        })
    
-   #####################
-   ## IMPORT FUNTIONS ##
-   #####################
+#####################
+## IMPORT FUNCTIONS ##
+#####################
    
-   ## HOME 
-   if premium:
-      if selected2 == "Home":
-         st.title('Welcome to Vocado Admin Center')
-         tf.metricas()
-         #authenticator.logout('Logout', 'main')
-         
-      ## My Business
-      if selected2 == "My Business":
-         st.title('Business Admin Center')
-         tf.select_business()
+## HOME 
+   if selected == "Home":
+      st.title('Welcome to Vocado Admin Center')
+      tf.metricas()
+      #authenticator.logout('Logout', 'main')
       
-      
-      ## My Competition
-      if selected2 == "Competition":
-         st.title('Competition')
-         tf.timeseries()
-      
-      ## My Opportunities
-      if selected2 == "Opportunities":
-         st.title('Opportunities Exploration')
-         tf.machine_learning()
-       
-      # ## Time Series Analysis
-      # if selected2 == "Time Series Analysis":
-      #    st.title('Time Series Analysis')
-      #    tf.timeseries()
-      
-      if selected2 == "Add business":
-         tf.addbusiness()
-      if selected2 == 'Log out':
-         st.title("Do you want to log out?")
-         authenticator.logout('Logout', 'main')
-      if selected2 == 'mapa':
-         tf.mapa3dGrafico()
-   else:
-      if 'button' not in st.session_state:
-         st.session_state.button= False 
-      def funButton():
-         st.session_state.button=True
-      if selected2 == "Home":
-         st.title('Welcome to Vocado Admin Center')
-         tf.metricas()
-         #authenticator.logout('Logout', 'main')
-      if selected2 == "My Business":
-         st.title("Try our free premium for 1 month to get to know all of Vocado's functionalities")
-         if st.button("Try premium!",on_click=funButton) or st.session_state.button:
-            tf.select_business()
-      if selected2 == "Competition":
-         st.title("Try our free premium for 1 month to get to know all of Vocado's functionalities")
-         if st.button("Try premium!",on_click=funButton) or st.session_state.button:
-            tf.timeseries()
-      if selected2 == "Opportunities":
-         st.title("Try our free premium for 1 month to get to know all of Vocado's functionalities")
-         if st.button("Try premium!",on_click=funButton) or st.session_state.button:
-            tf.machine_learning()
-      if selected2 == "Add business":
-         st.title("Try our free premium for 1 month to get to know all of Vocado's functionalities")
-         if st.button("Try premium!",on_click=funButton) or st.session_state.button:
-            tf.addbusiness()
-      if selected2 == 'Log out':
-         st.title("Do you want to log out?")
-         authenticator.logout('Logout', 'main')
+   ## My Business
+   if selected == "My Business":
+      st.title('Business Admin Center')
+      tf.select_business()
 
+
+   ## My Competition
+   if selected == "Competition":
+      st.title('Competition')
+      tf.timeseries()
+
+   ## My Opportunities
+   if selected == "Opportunities":
+      st.title('Opportunities Exploration')
+      tf.machine_learning()
+
+   ## Add Business
+   if selected == "Add business":
+      tf.addbusiness()
+
+   ## Log out
+   if selected == 'Log out':
+      st.title("Do you want to log out?")
+      authenticator.logout('Logout', 'main')
          
