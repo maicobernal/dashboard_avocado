@@ -8,6 +8,20 @@ from PIL import Image
 import streamlit_authenticator as stauth
 import yaml
 
+if 'key' not in st.session_state:
+   st.session_state['key'] = None
+if 'name' not in st.session_state:
+   st.session_state['name'] = None
+if 'expiry_days' not in st.session_state:
+   st.session_state['expiry_days'] = None
+if 'authentication_status' not in st.session_state:
+   st.session_state['authentication_status'] = None
+if 'username' not in st.session_state:
+   st.session_state['username'] = None
+
+
+print(st.session_state)
+
 with open(r'./config.yaml') as file: #Open the config.yaml file and then use it in user authentication
    users = yaml.load(file, Loader=yaml.SafeLoader)
 
@@ -24,19 +38,7 @@ st.set_page_config(
 with open('style.css') as f:
    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-if 'key' not in st.session_state:
-   st.session_state['key'] = None
-if 'name' not in st.session_state:
-   st.session_state['name'] = None
-if 'expiry_days' not in st.session_state:
-   st.session_state['expiry_days'] = None
-if 'authentication_status' not in st.session_state:
-   st.session_state['authentication_status'] = None
-if 'username' not in st.session_state:
-   st.session_state['username'] = None
 
-
-print(st.session_state)
 
 authenticator = stauth.Authenticate( #We instantiate the class and then use its methods in login and register
    users['credentials'],
